@@ -10,6 +10,11 @@ import DayListItem from "components/DayListItem";
 import DayList from "components/DayList";
 import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewerList";
+import Appointment from "components/Appointment/index.js";
+
+//-----------------------------------------------------------------
+// Button Stories
+//-----------------------------------------------------------------
 
 storiesOf("Button", module)
   .addParameters({
@@ -27,6 +32,10 @@ storiesOf("Button", module)
     </Button>
   ));
 
+//-----------------------------------------------------------------
+// DayListItem Stories
+//-----------------------------------------------------------------
+
 storiesOf("DayListItem", module) //Initiates Storybook and registers our DayListItem component
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -37,6 +46,10 @@ storiesOf("DayListItem", module) //Initiates Storybook and registers our DayList
   .add("Clickable", () => (
     <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} /> // action() allows us to create a callback that appears in the actions panel when clicked
   ));
+
+//-----------------------------------------------------------------
+// DayList Stories
+//-----------------------------------------------------------------
 
   const days = [
     {
@@ -69,6 +82,10 @@ storiesOf("DayListItem", module) //Initiates Storybook and registers our DayList
     .add("Wednesday", () => (
         <DayList days={days} value={"Wednesday"} onChange={action("setDay")} />
     ));
+
+//-----------------------------------------------------------------
+// InterviewerListItem Stories
+//-----------------------------------------------------------------
 
   const interviewer = {
     id: 1,
@@ -104,6 +121,9 @@ storiesOf("DayListItem", module) //Initiates Storybook and registers our DayList
         />
     ));
 
+//-----------------------------------------------------------------
+// InterviewerList Stories
+//-----------------------------------------------------------------
   const interviewers = [
     { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
     { id: 2, name: "Tori Malcolm", avatar: "https://i.imgur.com/Nmx0Qxo.png" },
@@ -133,3 +153,20 @@ storiesOf("DayListItem", module) //Initiates Storybook and registers our DayList
         onChange={action("setInterviewer")}
       />
     )); 
+
+//-----------------------------------------------------------------
+// Appointment Stories
+//-----------------------------------------------------------------
+  storiesOf("Appointment", module)
+    .addParameters({
+      backgrounds: [{ name: "white", value: "#fff", default: true }]
+    })
+    .add("Appointment", () => (
+      <Appointment 
+      />
+    ))
+    .add("Appointment with Time", () => (
+      <Appointment
+        time="12pm" 
+      />
+    ))
