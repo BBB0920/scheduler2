@@ -97,11 +97,11 @@ storiesOf("DayListItem", module) //Initiates Storybook and registers our DayList
     ))
     .add("Clickable", () => (
       <InterviewerListItem
-        id={interviewer.id}
         name={interviewer.name}
         avatar={interviewer.avatar}
-        setInterviewer={action("setInterviewer")}
-      />
+        setInterviewer={() => action("setInterviewer")(interviewer.id)}
+        //This is Storybook syntax - An argument can be passed to a function in Storybook by wrapping it in () after the name of the action
+        />
     ));
 
   const interviewers = [
