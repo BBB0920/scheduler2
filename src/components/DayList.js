@@ -1,5 +1,4 @@
 import React from "react";
-
 import DayListItem from "components/DayListItem";
 
 export default function DayList(props) {
@@ -9,7 +8,7 @@ export default function DayList(props) {
       <DayListItem
         key={day.id}
         name={day.name}
-        spots={day.spots}
+        spots={day.spots}a
         selected={day.name === props.day}
         setDay={props.setDay}
       />
