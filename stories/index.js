@@ -213,3 +213,18 @@ storiesOf("DayListItem", module) //Initiates Storybook and registers our DayList
         onClose={action("onClose")}
       />
     ))
+    .add("Edit", () => (
+      <Form
+        student="Lyon Lee"
+        interviewer={0}
+        interviewers={interviewers}
+        onSave={action("onSave")}
+      />
+    ))
+    .add("Create", () => (
+      <Create
+        intereviewers={interviewers}
+        onSave={action("onSave")}
+        onCancel={action("onCancel")}
+      />
+    ))
