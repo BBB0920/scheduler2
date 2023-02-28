@@ -68,11 +68,11 @@ export default function Application(props) {
   const [day, setDay] = useState("Monday");
   const [days, setDays] = useState([]);
 
-useEffect(() => {
-  axios.get("/api/days").then(res => {
-    setDays(res.data);
-  })
-}, [])
+  useEffect(() => {
+    axios.get("/api/days").then(res => {
+      setDays(res.data);
+    })
+  }, [])
 
   return (
     <main className="layout">
