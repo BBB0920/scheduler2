@@ -44,9 +44,10 @@ export default function useApplicationData() {
       };
 
       return axios.put(`/api/appointments/${id}`, { interview })
-      .then(() => 
+      .then(() => {
         setState({...state, appointments})
-      )
+        const spots = updateRemainingSpots(state.day)
+      })
     }
 
     function cancelInterview(id) {
@@ -62,9 +63,19 @@ export default function useApplicationData() {
       };
 
       return axios.delete(`/api/appointments/${id}`)
-      .then(() => 
+      .then(() => {
         setState({...state, appointments})
-      )
+        const spots = updateRemainingSpots(state.day)
+      })
     }
+
+    // Updates remaining interview spots given the day
+    function updateRemainingSpots(selectedDay) {
+      const daysArr = state.days.filter(day => day.name === selectedDay);
+      const appointmentsOnSelectedDay = (daysArr.appointments).map((id) => state.appointments[id]);
+      const remainingSpots = appointmentsOnSelectedDay.filter((appt) => appt.interview === null);
+      return remainingSpots.length;
+    }
+
   return { state, setDay, bookInterview, cancelInterview }
 }
