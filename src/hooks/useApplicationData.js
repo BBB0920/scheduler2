@@ -12,7 +12,7 @@ export default function useApplicationData() {
       interviewers: {},
     })
 
-    // Need to do this because we are passing it down as a prop/reference
+    // Need to do this separate from the above because we need to pass setDay as a prop, and need to reference it
     const setDay = day => setState({ ...state, day });
 
     useEffect(() => {
@@ -69,9 +69,9 @@ export default function useApplicationData() {
       })
     }
 
-    // Updates remaining interview spots given the day
+    // Updates remaining interview spots given the day using null interviews
     function updateRemainingSpots(selectedDay) {
-      const daysArr = state.days.filter(day => day.name === selectedDay);
+      const [daysArr] = state.days.filter(day => day.name === selectedDay);
       const appointmentsOnSelectedDay = (daysArr.appointments).map((id) => state.appointments[id]);
       const remainingSpots = appointmentsOnSelectedDay.filter((appt) => appt.interview === null);
       return remainingSpots.length;

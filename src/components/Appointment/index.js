@@ -14,6 +14,7 @@ import "./styles.scss";
 
 export default function Appointment(props) {
 
+  // Mode variables
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
@@ -28,31 +29,34 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
-  function save(name, interviewer) {
+  // Save Interview function
+  const save = (name, interviewer) => {
     const interview = {
       student: name,
       interviewer
     };
 
-    transition(SAVING, true);
+    transition(SAVING);
 
     props.bookInterview(props.id, interview)
     .then(() => transition(SHOW))
     .catch((err) => {
+      console.log(err);
       transition(ERROR_SAVE, true)
     });
   };
 
-  function cancel() {
+  // Cancel Interview function
+  const cancel = () => {
     transition(DELETE, true);
     
     props.cancelInterview(props.id)
     .then(() => transition(EMPTY))
     .catch((err) => {
+      console.log(err);
       transition(ERROR_DELETE, true)
-    });;
-
-  }
+    });
+  };
 
   return (
     <article className="appointment">
