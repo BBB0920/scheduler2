@@ -46,7 +46,10 @@ export default function useApplicationData() {
       return axios.put(`/api/appointments/${id}`, { interview })
       .then(() => {
         setState({...state, appointments})
-        const spots = updateRemainingSpots(state.day)
+        // Runs asynchronously so sends both past state and current appointments data
+        const days = updateRemainingSpots(state.day, appointments);
+        setState({...state, appointments, days})
+        console.log(days);
       })
     }
 
@@ -65,17 +68,28 @@ export default function useApplicationData() {
 
       return axios.delete(`/api/appointments/${id}`)
       .then(() => {
-        setState({...state, appointments})
-        const spots = updateRemainingSpots(state.day)
+        // Runs asynchronously so sends both past state and current appointments data
+        const days = updateRemainingSpots(state.day, appointments);
+        setState({...state, appointments, days})
+        console.log(days);
       })
     }
 
     // Updates remaining interview spots given the day using null interviews
-    function updateRemainingSpots(selectedDay) {
-      const [daysArr] = state.days.filter(day => day.name === selectedDay);
-      const appointmentsOnSelectedDay = (daysArr.appointments).map((id) => state.appointments[id]);
+    function updateRemainingSpots(selectedDay, appointments) {
+      const daysArr = state.days.filter(day => day.name === selectedDay);
+      const daysIndex = state.days.findIndex(day => day.name === selectedDay);
+
+      const appointmentsOnSelectedDay = daysArr[0].appointments.map((id) => appointments[id]);
       const remainingSpots = appointmentsOnSelectedDay.filter((appt) => appt.interview === null);
-      return remainingSpots.length;
+
+      let copyDays = [...state.days];
+      let copyCurrentDay = daysArr[0];
+
+      copyCurrentDay.spots = remainingSpots.length;
+      copyDays[daysIndex] = copyCurrentDay;
+
+      return copyDays;
     }
 
   return { state, setDay, bookInterview, cancelInterview }
