@@ -50,6 +50,7 @@ export default function useApplicationData() {
       })
     }
 
+    
     function cancelInterview(id) {
       
       const appointment = {
