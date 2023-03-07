@@ -49,7 +49,6 @@ export default function useApplicationData() {
         // Runs asynchronously so sends both past state and current appointments data
         const days = updateRemainingSpots(state.day, appointments);
         setState({...state, appointments, days})
-        console.log(days);
       })
     }
 
@@ -71,7 +70,6 @@ export default function useApplicationData() {
         // Runs asynchronously so sends both past state and current appointments data
         const days = updateRemainingSpots(state.day, appointments);
         setState({...state, appointments, days})
-        console.log(days);
       })
     }
 

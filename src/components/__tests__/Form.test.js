@@ -26,7 +26,7 @@ describe("Form", () => {
 
   it("renders with initial student name", () => {
     const { getByTestId } = render(
-      <Form interviewers={interviewers} name="Lydia Miller-Jones" />
+      <Form interviewers={interviewers} student="Lydia Miller-Jones" />
     );
     expect(getByTestId("student-name-input")).toHaveValue("Lydia Miller-Jones");
   });
@@ -71,7 +71,7 @@ describe("Form", () => {
     const { getByText, getByPlaceholderText, queryByText } = render(
       <Form
         interviewers={interviewers}
-        name="Lydia Mill-Jones"
+        student="Lydia Mill-Jones"
         onSave={jest.fn()}
         onCancel={onCancel}
       />
