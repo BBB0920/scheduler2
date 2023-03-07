@@ -7,7 +7,10 @@ The core design / CSS was provided to us as a template, but overall was a challe
 
 ## Screen Shots
 
-
+!["Main Screen"](https://github.com/BBB0920/scheduler2/blob/master/docs/mainscreen.png)
+!["Appointment Form"](https://github.com/BBB0920/scheduler2/blob/master/docs/appointment-form.png)
+!["Deleting Appointment"](https://github.com/BBB0920/scheduler2/blob/master/docs/appointment-delete.png)
+!["Sidebar"](https://github.com/BBB0920/scheduler2/blob/master/docs/sidebar.png)
 
 ## Setup
 
