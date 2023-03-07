@@ -51,7 +51,6 @@ export default function Form(props) {
         </form>
         <InterviewerList
           // These three are from index - InterviewerList stories - and are props needed to generate InterviewerList
-          // MENTOR HELP: Since stories will not always be available, an alternative method would be to go to InterviewerList and look up everywhere that needs "props." - those are the props that are needed to be passed down
           interviewers={props.interviewers}
           value={interviewer}
           onChange={setInterviewer}
